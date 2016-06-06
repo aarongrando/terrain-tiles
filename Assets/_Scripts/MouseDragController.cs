@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MouseDragController : MonoBehaviour {
 
-	float distance = 12.5F;
+	 float distance = 15F;
 
 	void OnMouseDrag() {
 		Vector3 mousePosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, distance);

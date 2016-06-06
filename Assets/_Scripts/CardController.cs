@@ -4,8 +4,9 @@ using System.Collections;
 public class CardController : MonoBehaviour {
 
 	public GameObject deck_object;
+    public Material[] materials;
 
-	private DeckController deck;
+    private DeckController deck;
 
 	private string card_value;
 	private Renderer card_renderer;
@@ -24,14 +25,14 @@ public class CardController : MonoBehaviour {
 
 			switch (card_value) {
 			case "G":
-				card_renderer.material.color = Color.green;
+				card_renderer.material = materials[0];
 				break;
 			case "M":
-				card_renderer.material.color = Color.gray;
-				break;
+                card_renderer.material = materials[1];
+                break;
 			case "T":
-				card_renderer.material.color = Color.black;
-				break;
+                card_renderer.material = materials[1];
+                break;
 			}
 		}
 	}
