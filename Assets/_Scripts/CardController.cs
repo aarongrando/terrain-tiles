@@ -8,19 +8,18 @@ public class CardController : MonoBehaviour {
 
     private DeckController deck;
 
-	private string card_value;
+    public string card_value;
 	private Renderer card_renderer;
 
 	// Use this for initialization
 	void Start () {
 		deck = deck_object.GetComponent<DeckController> ();
 		card_renderer = gameObject.GetComponent<Renderer> ();
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (card_value == null) {
+		if (card_value == "") {
 			card_value = deck.DrawCard ();
 
 			switch (card_value) {
@@ -31,7 +30,7 @@ public class CardController : MonoBehaviour {
                 card_renderer.material = materials[1];
                 break;
 			case "T":
-                card_renderer.material = materials[1];
+                card_renderer.material = materials[2];
                 break;
 			}
 		}

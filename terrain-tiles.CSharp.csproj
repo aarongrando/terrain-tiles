@@ -78,6 +78,7 @@
     <Compile Include="Assets\_Scripts\CardController.cs" />
     <Compile Include="Assets\_Scripts\CountController.cs" />
     <Compile Include="Assets\_Scripts\DeckController.cs" />
+    <Compile Include="Assets\_Scripts\HandController.cs" />
     <Compile Include="Assets\_Scripts\MouseDragController.cs" />
     <Compile Include="Assets\_Scripts\TerrainController.cs" />
     <Compile Include="Assets\_Scripts\WorldController.cs" />

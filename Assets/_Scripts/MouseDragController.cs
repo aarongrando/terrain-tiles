@@ -3,13 +3,62 @@ using System.Collections;
 
 public class MouseDragController : MonoBehaviour {
 
-	 float distance = 15F;
+    public static GameObject itemBeingDragged;
+    public GameObject hand_object;
 
-	void OnMouseDrag() {
-		Vector3 mousePosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, distance);
-		Vector3 objPosition = Camera.main.ScreenToWorldPoint (mousePosition);
+    float distance = 14.8F;
+    private HandController hand;
+    private GameObject terrain_hover;
 
-		transform.position = objPosition;
-	}
+    Vector3 startPosition;
+
+    void Start()
+    {
+        hand = hand_object.GetComponent<HandController>();
+    }
+
+    public void OnMouseDown()
+    {
+        itemBeingDragged = gameObject;
+        hand.selected_card = itemBeingDragged;
+        startPosition = transform.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+    }
+
+    void OnMouseDrag()
+    {
+        Ray ray;
+        RaycastHit hit;
+
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        transform.position = objPosition;
+        ray = new Ray (itemBeingDragged.transform.position, -Vector3.up);
+        if (Physics.Raycast(ray, out hit))
+        {
+            terrain_hover = GameObject.Find(hit.collider.name);
+            print(terrain_hover.ToString());
+        }
+    }
+
+    public void OnMouseUp()
+    {
+        // Perform Choice Logic
+        terrain_hover.GetComponent<TerrainController>().tile_status = itemBeingDragged.GetComponent<CardController>().card_value;
+
+        // Reset objects
+        itemBeingDragged = null;
+        hand.selected_card = itemBeingDragged;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        if (transform.position != startPosition)
+        {
+            transform.position = startPosition;
+
+        }
+    }
+
+
+
 
 }

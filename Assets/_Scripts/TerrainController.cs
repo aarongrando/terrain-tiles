@@ -6,9 +6,11 @@ public class TerrainController : MonoBehaviour {
 
     public string tile_status = "G";
     public Material[] materials;
+    public GameObject hand;
 
 	private GameObject self;
     private Renderer tile_renderer;
+    public GameObject hovering_card;
 
     // Use this for initialization
     void Start () {
@@ -39,7 +41,18 @@ public class TerrainController : MonoBehaviour {
 		pop_out ();
 	}
 
-	void pop_in ()
+    void OnMouseOver()
+    {
+        hovering_card = hand.GetComponent<HandController>().selected_card;
+        
+    }
+
+    void OnMouseExit()
+    {
+        hovering_card = null;
+    }
+
+    void pop_in ()
     {
         gameObject.transform.localScale = new Vector3(0, 0, 0);
         LeanTween.rotate(self, new Vector3(0, 0, -90), 0.5F);

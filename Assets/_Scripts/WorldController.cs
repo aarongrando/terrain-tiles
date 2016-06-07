@@ -22,8 +22,6 @@ public class WorldController : MonoBehaviour {
  
             int randomIndex = UnityEngine.Random.Range(0, strength_total);
 
-            print(randomIndex);
-
             string weighted_tile_choice = "G";
 
             if (randomIndex < grass_strength)
