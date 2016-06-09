@@ -22,9 +22,17 @@ public class DeckController : MonoBehaviour {
 	}
 
 	public string DrawCard() {
-		string card = cards [0];
-		cards.RemoveAt (0);
-		Console.Write (cards.Count.ToString());
+        string card;
+
+        if (cards.Count != 0) // If there's cards still in the deck
+        {
+            card = cards[0];
+            cards.RemoveAt(0);
+        } else
+        {
+            card = null;
+        }
+
 		return card;
 	}
 

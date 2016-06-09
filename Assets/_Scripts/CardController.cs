@@ -32,7 +32,10 @@ public class CardController : MonoBehaviour {
 			case "T":
                 card_renderer.material = materials[2];
                 break;
-			}
+            case null:
+                gameObject.SetActive(false);
+                break;
+            }
 		}
 	}
 

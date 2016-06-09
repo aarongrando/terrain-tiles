@@ -37,14 +37,30 @@ public class MouseDragController : MonoBehaviour {
         if (Physics.Raycast(ray, out hit))
         {
             terrain_hover = GameObject.Find(hit.collider.name);
-            print(terrain_hover.ToString());
+
+            if (terrain_hover.tag == "Tile")
+            {
+                print(terrain_hover.ToString());
+            } else
+            {
+                terrain_hover = null;
+            }
+
         }
     }
 
     public void OnMouseUp()
     {
-        // Perform Choice Logic
-        terrain_hover.GetComponent<TerrainController>().tile_status = itemBeingDragged.GetComponent<CardController>().card_value;
+
+        if (terrain_hover != null)
+        {
+            // Set terrain to current card value
+            terrain_hover.GetComponent<TerrainController>().tile_status = itemBeingDragged.GetComponent<CardController>().card_value;
+
+            // Reset card value
+            itemBeingDragged.GetComponent<CardController>().card_value = "";
+ 
+        }
 
         // Reset objects
         itemBeingDragged = null;
