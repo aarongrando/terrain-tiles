@@ -12,6 +12,11 @@ public class TerrainController : MonoBehaviour {
     private Renderer tile_renderer;
     public GameObject hovering_card;
 
+    public GameObject above_tile;
+    public GameObject below_tile;
+    public GameObject left_tile;
+    public GameObject right_tile;
+
     // Use this for initialization
     void Start () {
 		self = gameObject;
